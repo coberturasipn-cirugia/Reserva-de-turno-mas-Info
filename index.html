@@ -1,0 +1,2567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reservá tu Turno — IPN Instituto Privado del Niño</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1565C0;
+    --blue-light: #1976D2;
+    --blue-pale: #E3F0FF;
+    --red: #C62828;
+    --green: #2E7D32;
+    --yellow: #F9A825;
+    --yellow-light: #FFF8E1;
+    --bg: #F5F8FF;
+    --white: #ffffff;
+    --text: #1A2340;
+    --text-muted: #5A6A8A;
+    --border: #D8E4F5;
+    --shadow: 0 4px 24px rgba(21,101,192,0.10);
+    --radius: 18px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--blue);
+    position: relative;
+    overflow: hidden;
+    padding: 40px 20px 60px;
+    text-align: center;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 220px; height: 220px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+  .hero-logo {
+    background: white;
+    width: 80px; height: 80px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  }
+  .hero-logo img { width: 60px; height: 60px; object-fit: contain; }
+  .hero h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .hero p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.80);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+  .urgencia-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--red);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    padding: 9px 20px;
+    border-radius: 99px;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(198,40,40,0.45);
+    animation: pulse-red 2s infinite;
+  }
+  @keyframes pulse-red {
+    0%,100%{ box-shadow: 0 4px 16px rgba(198,40,40,0.45); }
+    50%{ box-shadow: 0 4px 28px rgba(198,40,40,0.75); }
+  }
+  .urgencia-dot {
+    width: 8px; height: 8px;
+    background: white; border-radius: 50%;
+    animation: blink 1s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* WAVE */
+  .wave { display: block; margin-top: -2px; }
+
+  /* MAIN */
+  .main { padding: 0 16px 40px; max-width: 520px; margin: 0 auto; }
+
+  /* SECTION TITLES */
+  .section-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--blue);
+    margin: 28px 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title span {
+    font-size: 18px;
+  }
+
+  /* CTA BUTTONS */
+  .cta-group { display: flex; flex-direction: column; gap: 10px; margin-top: -10px; }
+
+  .cta-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-btn:active { transform: scale(0.97); }
+  .cta-btn .icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .cta-btn .btn-text { flex: 1; }
+  .cta-btn .btn-label { font-size: 12px; font-weight: 600; opacity: 0.75; margin-bottom: 1px; }
+  .cta-btn .btn-title { font-size: 15px; font-weight: 800; }
+  .cta-btn .arrow { font-size: 18px; opacity: 0.5; }
+
+  .btn-wa {
+    background: #E8F5E9;
+    border: 1.5px solid #A5D6A7;
+    color: #1B5E20;
+    box-shadow: 0 4px 16px rgba(46,125,50,0.12);
+  }
+  .btn-wa .icon { background: #25D366; color: white; }
+
+  .btn-phone {
+    background: var(--blue-pale);
+    border: 1.5px solid #90CAF9;
+    color: var(--blue);
+    box-shadow: var(--shadow);
+  }
+  .btn-phone .icon { background: var(--blue); color: white; }
+
+  .btn-web {
+    background: var(--yellow-light);
+    border: 1.5px solid #FFE082;
+    color: #5D4037;
+    box-shadow: 0 4px 16px rgba(249,168,37,0.12);
+  }
+  .btn-web .icon { background: var(--yellow); color: white; }
+
+  /* HORARIOS */
+  .horarios-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .horario-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .horario-row:last-child { border-bottom: none; }
+  .horario-left { display: flex; align-items: center; gap: 10px; }
+  .horario-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-green { background: #4CAF50; }
+  .dot-blue { background: var(--blue); }
+  .dot-yellow { background: var(--yellow); }
+  .horario-service { font-weight: 600; color: var(--text); }
+  .horario-time { font-size: 13px; color: var(--text-muted); }
+  .badge-24 {
+    background: #FFEBEE;
+    color: var(--red);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 99px;
+    font-family: 'Nunito', sans-serif;
+  }
+  .badge-open {
+    background: #E8F5E9;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 99px;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  /* MEDICOS */
+  .medicos-grid { display: flex; flex-direction: column; gap: 12px; }
+  .medico-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .medico-card:active { transform: scale(0.98); }
+  .medico-avatar {
+    width: 62px; height: 62px;
+    border-radius: 16px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: var(--blue-pale);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--blue);
+    border: 2px solid var(--border);
+  }
+  .medico-info { flex: 1; }
+  .medico-name {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+  .medico-specialty {
+    font-size: 12px;
+    color: var(--blue);
+    font-weight: 600;
+    background: var(--blue-pale);
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 99px;
+    margin-bottom: 4px;
+  }
+  .medico-horario {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .medico-wa {
+    width: 36px; height: 36px;
+    background: #25D366;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(37,211,102,0.35);
+  }
+
+  /* SEGUROS */
+  .seguros-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .seguro-pill {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 8px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    box-shadow: 0 2px 8px rgba(21,101,192,0.06);
+  }
+  .seguro-pill span { font-size: 18px; display: block; margin-bottom: 4px; }
+
+  /* UBICACION */
+  .ubicacion-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .map-placeholder {
+    height: 130px;
+    background: linear-gradient(135deg, #BBDEFB 0%, #E3F2FD 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 32px;
+    position: relative;
+  }
+  .map-placeholder a {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    text-decoration: none;
+  }
+  .map-placeholder p {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue);
+  }
+  .ubicacion-info { padding: 14px 18px; }
+  .ubicacion-row {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; color: var(--text);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .ubicacion-row:last-child { border-bottom: none; }
+  .ubicacion-icon { font-size: 16px; width: 22px; text-align: center; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 24px 20px 32px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .footer strong { color: var(--blue); }
+
+  /* DOTS DECORATION */
+  .dots-header {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 14px;
+  }
+  .dot-deco {
+    width: 8px; height: 8px; border-radius: 50%;
+  }
+
+  /* BUSCADOR DE ESPECIALIDADES */
+  .search-box {
+    background: var(--white);
+    border: 2px solid var(--blue);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 12px;
+  }
+  .search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    background: transparent;
+  }
+  .search-box input::placeholder { color: #A0B0CC; }
+  .search-box .search-icon { font-size: 20px; }
+
+  .filter-chips {
+    display: flex;
+    gap: 7px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    margin-bottom: 14px;
+    scrollbar-width: none;
+  }
+  .filter-chips::-webkit-scrollbar { display: none; }
+  .chip {
+    white-space: nowrap;
+    background: var(--blue-pale);
+    border: 1.5px solid var(--border);
+    border-radius: 99px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    color: var(--blue);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .chip.active, .chip:active {
+    background: var(--blue);
+    color: white;
+    border-color: var(--blue);
+  }
+
+  /* DOCTOR CARDS MEJORADAS */
+  .doctor-full-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 12px;
+    transition: transform 0.15s;
+  }
+  .doctor-full-card.hidden { display: none; }
+  .doctor-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px 12px;
+    cursor: pointer;
+  }
+  .doctor-card-header:active { opacity: 0.85; }
+  .doctor-avatar2 {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: var(--blue-pale);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    color: var(--blue);
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+  }
+  .doctor-card-meta { flex: 1; min-width: 0; }
+  .doctor-card-name {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .doctor-card-spec {
+    font-size: 11px;
+    color: var(--blue);
+    font-weight: 700;
+    background: var(--blue-pale);
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 99px;
+    margin-bottom: 3px;
+  }
+  .doctor-card-time {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .expand-icon {
+    font-size: 18px;
+    color: var(--text-muted);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .doctor-full-card.open .expand-icon { transform: rotate(90deg); }
+
+  /* TAP HINT badge */
+  .tap-hint {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--blue);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 99px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    animation: tapPulse 2.4s ease-in-out infinite;
+    box-shadow: 0 2px 8px rgba(21,101,192,0.35);
+  }
+  .tap-hint .tap-dot {
+    width: 6px; height: 6px;
+    background: #90CAF9;
+    border-radius: 50%;
+    animation: blink 1.1s infinite;
+  }
+  .doctor-full-card.open .tap-hint {
+    background: #E8F5E9;
+    color: #1B5E20;
+    box-shadow: none;
+    animation: none;
+  }
+  .doctor-full-card.open .tap-hint::after { content: 'Cerrar'; }
+  .doctor-full-card:not(.open) .tap-hint::after { content: 'Ver info'; }
+  .doctor-full-card.open .tap-dot { background: #4CAF50; animation: none; }
+  @keyframes tapPulse {
+    0%,100% { box-shadow: 0 2px 8px rgba(21,101,192,0.35); transform: scale(1); }
+    50%      { box-shadow: 0 2px 14px rgba(21,101,192,0.60); transform: scale(1.04); }
+  }
+
+  .doctor-card-body {
+    display: none;
+    padding: 14px 14px 6px;
+    border-top: 1px solid var(--border);
+    background: #F8FBFF;
+    animation: slideDown 0.18s ease;
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .doctor-full-card.open .doctor-card-body { display: block; }
+
+  /* INFO GRID: visual chip layout */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .info-chip {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    box-shadow: 0 1px 4px rgba(21,101,192,0.06);
+  }
+  .info-chip.full { grid-column: 1 / -1; }
+  .info-chip .chip-icon { font-size: 16px; line-height: 1; margin-bottom: 2px; }
+  .info-chip .chip-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: 'Nunito', sans-serif;
+  }
+  .info-chip .chip-val {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .info-chip.chip-blue   { border-left: 3px solid var(--blue); background: #F0F6FF; }
+  .info-chip.chip-green  { border-left: 3px solid #2E7D32;     background: #F1FBF3; }
+  .info-chip.chip-amber  { border-left: 3px solid #F9A825;     background: #FFFBF0; }
+  .info-chip.chip-purple { border-left: 3px solid #7B1FA2;     background: #FBF0FF; }
+  .info-chip.chip-red    { border-left: 3px solid var(--red);  background: #FFF5F5; }
+
+  /* legacy — hidden, replaced by chips */
+  .info-row { display: none; }
+  .info-row .info-label { font-size: 12px; }
+  .info-row .info-val { flex: 1; }
+
+  .card-actions {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px 14px;
+    border-top: 1px solid var(--border);
+  }
+  .action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 8px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 12px;
+    transition: transform 0.12s, opacity 0.12s;
+  }
+  .action-btn:active { transform: scale(0.96); opacity: 0.85; }
+  .action-btn-agenda {
+    background: var(--blue);
+    color: white;
+  }
+  .action-btn-wa {
+    background: #E8F5E9;
+    color: #1B5E20;
+    border: 1px solid #A5D6A7;
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 32px 16px;
+    color: var(--text-muted);
+    font-size: 14px;
+    display: none;
+  }
+  .no-results .no-results-icon { font-size: 36px; margin-bottom: 8px; }
+
+  /* BOTONES NUEVOS: WEB + SECRETARÍA */
+  .btn-secretaria {
+    background: #F3E5F5;
+    border: 1.5px solid #CE93D8;
+    color: #4A148C;
+    box-shadow: 0 4px 16px rgba(106,27,154,0.10);
+  }
+  .btn-secretaria .icon { background: #7B1FA2; color: white; }
+
+  /* BADGE COSTO */
+  .badge-costo {
+    background: #FFF8E1;
+    color: #5D4037;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 99px;
+    font-family: 'Nunito', sans-serif;
+    display: inline-block;
+    margin-left: 4px;
+  }
+
+  /* FORM FOCUS ECOGRAFÍA */
+  #eco_nombre:focus, #eco_cedula:focus, #eco_padre_madre:focus,
+  #eco_celular:focus, #eco_seguro:focus, #eco_estudio:focus, #eco_obs:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(21,101,192,0.12);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-logo">
+    <img src="data:image/webp;base64,UklGRloBAABXRUJQVlA4IE4BAADQCACdASo8ADwAPu1orFGppaQirhJJyTAdiWQA04D4yAbYDcAbyrvMf+qYIFUleHYSabMLNzokFdMZ/o3jexTwHAfl2lnTFs8Kmkk+gy0wAP71cTJHmPYf+n4rdE8+tC4wbOXTdPzVb5Ji0hRL/Z2DsbmWor6ir7KH+2ct6kPjt0gh0o2Aox1vWOYhKiX/9ssMvmuW5IaTWePvwuQ9D3cztgMllSKXdReIhsuPLL3k3opZaYNkhzkwxqX7Em65UVlERiYx2wWnmdztULL/8UfVl+O79LT6QWVZg7GhynPaaAfJuwyIPvhMe9+pqYE7VCIjdcNRMXMXQZVaHoDW6w5fpVYgJksGkkTQKVra/AJ6aDJvtdTY0wlYJgyA1o9G9As9VyvqRYSei95n3JZWpCXxAA8Fry+/m06ILTBZWlXri9SMVq9PbCcVw7G0AAAA" alt="IPN Logo">
+  </div>
+  <h1>Instituto Privado<br>del Niño</h1>
+  <p>Más de 50 años cuidando la salud<br>de niños y adolescentes en Asunción</p>
+  <a href="https://wa.link/9kiyts" class="urgencia-pill" target="_blank">
+    <div class="urgencia-dot"></div>
+    URGENCIAS 24HS — Llamar ahora
+  </a>
+  <div class="dots-header">
+    <div class="dot-deco" style="background:#C62828"></div>
+    <div class="dot-deco" style="background:#2E7D32"></div>
+    <div class="dot-deco" style="background:#F9A825"></div>
+    <div class="dot-deco" style="background:rgba(255,255,255,0.5)"></div>
+  </div>
+</div>
+
+<svg class="wave" viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;background:#F5F8FF;">
+  <path d="M0,40 C360,0 1080,0 1440,40 L1440,0 L0,0 Z" fill="#1565C0"/>
+</svg>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- BUSCADOR POR ESPECIALIDAD -->
+  <div class="section-title"><span>🔍</span> Buscar por especialidad</div>
+
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Buscar médico o especialidad…" oninput="filterDoctors()" autocomplete="off">
+  </div>
+
+  <div class="filter-chips" id="filterChips">
+    <div class="chip active" onclick="filterByTag('todos', this)">Todos</div>
+    <div class="chip" onclick="filterByTag('pediatria', this)">🍼 Pediatría</div>
+    <div class="chip" onclick="filterByTag('infectologia', this)">🦠 Infectología</div>
+    <div class="chip" onclick="filterByTag('cardiologia', this)">❤️ Cardiología</div>
+    <div class="chip" onclick="filterByTag('gastro', this)">🍽️ Gastroenterología</div>
+    <div class="chip" onclick="filterByTag('traumatologia', this)">🦴 Traumatología</div>
+    <div class="chip" onclick="filterByTag('neurologia', this)">🧠 Neurología</div>
+    <div class="chip" onclick="filterByTag('reumatologia', this)">🦴 Reumatología</div>
+    <div class="chip" onclick="filterByTag('oftalmologia', this)">👁️ Oftalmología</div>
+    <div class="chip" onclick="filterByTag('psiquiatria', this)">🧠 Psiquiatría</div>
+    <div class="chip" onclick="filterByTag('psicologia', this)">🧩 Psicología</div>
+    <div class="chip" onclick="filterByTag('psicopedagogia', this)">📚 Psicopedagogía</div>
+    <div class="chip" onclick="filterByTag('nutricion', this)">🥗 Nutrición</div>
+    <div class="chip" onclick="filterByTag('orl', this)">👂 ORL</div>
+    <div class="chip" onclick="filterByTag('nefrologia', this)">💧 Nefrología</div>
+    <div class="chip" onclick="filterByTag('hemato', this)">🩸 Hemato-Oncología</div>
+    <div class="chip" onclick="filterByTag('dermatologia', this)">🌿 Dermatología</div>
+    <div class="chip" onclick="filterByTag('ginecologia', this)">👩‍⚕️ Ginecología</div>
+    <div class="chip" onclick="filterByTag('fonoaudiologia', this)">🎤 Fonoaudiología</div>
+    <div class="chip" onclick="filterByTag('odontologia', this)">🦷 Odontología</div>
+    <div class="chip" onclick="filterByTag('cirugia', this)">🔬 Cirugía</div>
+    <div class="chip" onclick="filterByTag('alergia', this)">💉 Alergia</div>
+  </div>
+
+  <div id="doctorsList">
+
+    <!-- ===== PEDIATRÍA ===== -->
+    <div class="doctor-full-card" data-tags="pediatria" data-search="Ricardo Iramain pediatra neonatólogo">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">RI</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dr. Ricardo Iramain</div>
+          <span class="doctor-card-spec">Pediatría · Neonatología</span>
+          <div class="doctor-card-time">🕐 Lun–Vie 14:00–18:00 · Sáb 09:30–11:30</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">2.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">250.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Asismed, Doctors, MediLife, Migone, OAMI, Reyva, Samaja, Santa Clara, Semei, SPS</span>
+      </div>
+      <div class="info-chip chip-purple">
+        <span class="chip-icon">🕐</span>
+        <span class="chip-label">Horario secretaría</span>
+        <span class="chip-val">Lun–Vie 13:00–19:00 · Sáb 09:00–12:00</span>
+      </div>
+      <div class="info-chip chip-red">
+        <span class="chip-icon">📞</span>
+        <span class="chip-label">Teléfono / WhatsApp</span>
+        <span class="chip-val">021 211203 (int. 293–296)</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://ipncm.com/drricardoi-agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/t1aw9b" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="pediatria" data-search="Gabriela Alfieri pediatra neonatóloga">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">GA</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Gabriela Alfieri</div>
+          <span class="doctor-card-spec">Pediatría · Neonatología</span>
+          <div class="doctor-card-time">🕐 Jue 14:00–18:00 · Vie 14:00–18:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">150.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">MediLife, Migone, OAMI, Santa Clara, SPS</span>
+      </div>
+      <div class="info-chip chip-purple">
+        <span class="chip-icon">🕐</span>
+        <span class="chip-label">Horario secretaría</span>
+        <span class="chip-val">Lun–Vie 09:00–12:00 y 14:00–19:00 · Sáb 09:00–12:00</span>
+      </div>
+      <div class="info-chip chip-red">
+        <span class="chip-icon">📞</span>
+        <span class="chip-label">Teléfono / WhatsApp</span>
+        <span class="chip-val">021 211 203 (int. 298) · 0983 877476</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://ipncm.com/dragabrielaa-agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/gd8c25" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="pediatria" data-search="Alfredo Carrillo Iramain pediatra">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">AC</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dr. Alfredo Carrillo Iramain</div>
+          <span class="doctor-card-spec">Pediatría</span>
+          <div class="doctor-card-time">🕐 Lun–Vie 14:00–18:00 · Sáb 08:00–11:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">Edificio Saint Germain</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">300.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Migone, OAMI, Reyva, Santa Clara</span>
+      </div>
+      <div class="info-chip chip-purple">
+        <span class="chip-icon">🕐</span>
+        <span class="chip-label">Horario secretaría</span>
+        <span class="chip-val">Lun–Vie 08:00–12:00 y 14:00–18:00 · Sáb 09:00–12:00</span>
+      </div>
+      <div class="info-chip chip-red">
+        <span class="chip-icon">📞</span>
+        <span class="chip-label">Teléfono / WhatsApp</span>
+        <span class="chip-val">0983 303023</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/pediatria/dr-alfredo-carrillo-iramain#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/4s7tvt" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="pediatria" data-search="Aníbal Carrillo Iramain pediatra">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">ACI</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dr. Aníbal Carrillo Iramain</div>
+          <span class="doctor-card-spec">Pediatría</span>
+          <div class="doctor-card-time">🕐 Lun–Vie 08:30–14:30 · Sáb 08:00–11:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">2.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">220.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Asismed, MediLife, Migone, OAMI, Santa Clara, SPS</span>
+      </div>
+      <div class="info-chip chip-purple">
+        <span class="chip-icon">🕐</span>
+        <span class="chip-label">Horario secretaría</span>
+        <span class="chip-val">Lun–Vie 08:00–14:00 · Sáb 08:00–11:00</span>
+      </div>
+      <div class="info-chip chip-red">
+        <span class="chip-icon">📞</span>
+        <span class="chip-label">Teléfono / WhatsApp</span>
+        <span class="chip-val">021 222704 (int. 293–296) · 0994 313090</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://ipncm.com/dranibalc-agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/6z5jv4" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="pediatria" data-search="Claudio Herreros pediatra">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">CH</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dr. Claudio Herreros</div>
+          <span class="doctor-card-spec">Pediatría</span>
+          <div class="doctor-card-time">🕐 Sáb 10:30–12:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">2.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">150.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Asismed, MediLife, Migone, OAMI, Promed, Reyva, Salud Protegida, Santa Clara, SIME, SMF, SPS</span>
+      </div>
+      <div class="info-chip chip-red">
+        <span class="chip-icon">📞</span>
+        <span class="chip-label">Teléfono / WhatsApp</span>
+        <span class="chip-val">021 211 203 (int. 295) · 0982 215688</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://ipncm.com/drclaudioh-agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/ry9ipo" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="pediatria" data-search="Juan Fernando Ojeda pediatra">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">JO</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dr. Juan Fernando Ojeda</div>
+          <span class="doctor-card-spec">Pediatría</span>
+          <div class="doctor-card-time">🕐 Mar y Jue 16:00–19:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, lado derecho</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">150.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Epem, Fleming, MediLife, OAMI, Promed, Reyva, Salud Protegida, Santa Clara, Semei, SPS</span>
+      </div>
+      <div class="info-chip chip-red">
+        <span class="chip-icon">📞</span>
+        <span class="chip-label">Teléfono / WhatsApp</span>
+        <span class="chip-val">021 211 203 · 0982 721875</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/pediatria/dr-fernando-ojeda#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/opx4x0" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="pediatria" data-search="Emma Valdez pediatra">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">EV</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Emma Valdez</div>
+          <span class="doctor-card-spec">Pediatría</span>
+          <div class="doctor-card-time">🕐 Lun y Vie 09:00–11:30 · Lun–Vie 16:00–18:30</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">150.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Asismed, Doctors, Imste, MediLife, Migone, OAMI, Reyva, Santa Clara, SPS</span>
+      </div>
+      <div class="info-chip chip-red">
+        <span class="chip-icon">📞</span>
+        <span class="chip-label">Teléfono / WhatsApp</span>
+        <span class="chip-val">021 211 203 (int. 298) · 0983 877476</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://ipncm.com/draemmav-agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/wvyq7x" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="pediatria" data-search="Julia Coronel pediatra">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">JC</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Julia Coronel</div>
+          <span class="doctor-card-spec">Pediatría</span>
+          <div class="doctor-card-time">🕐 Lun–Vie 13:00–18:00 · Sáb 07:30–11:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">2.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">220.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Asismed, Doctors, Fleming, MediLife, Migone, OAMI, Reyva, Samaja, Santa Clara, SPS, Vero</span>
+      </div>
+      <div class="info-chip chip-red">
+        <span class="chip-icon">📞</span>
+        <span class="chip-label">Teléfono / WhatsApp</span>
+        <span class="chip-val">021 211 203 (int. 296) · 0991 705620</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://ipncm.com/drajuliac-agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/epm1k7" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="pediatria" data-search="Virginia Iramain pediatra emergentóloga">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">VI</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Virginia Iramain</div>
+          <span class="doctor-card-spec">Pediatría · Emergentología</span>
+          <div class="doctor-card-time">🕐 Lun, Mié, Jue, Vie 09:00–16:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">2.º piso, lado derecho</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">150.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Fleming, OAMI, Santa Clara</span>
+      </div>
+      <div class="info-chip chip-red">
+        <span class="chip-icon">📞</span>
+        <span class="chip-label">Teléfono / WhatsApp</span>
+        <span class="chip-val">021 211 203 (int. 295) · 0982 215688</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://ipncm.com/dravirginia-agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/ry9ipo" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== INFECTOLOGÍA ===== -->
+    <div class="doctor-full-card" data-tags="infectologia" data-search="Fabiola Martínez infectóloga pediatra">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">FM</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Fabiola Martínez</div>
+          <span class="doctor-card-spec">Infectología Pediátrica</span>
+          <div class="doctor-card-time">🕐 Mié 15:30–18:30 · Sáb 09:00–11:30</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">150.000 Gs · Teleconsulta 120.000 Gs</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Doctors, Justicia Medical, MediLife, Migone, OAMI, Samap, Salud Protegida, Santa Clara, SNPP, SPS</span>
+      </div>
+      <div class="info-chip chip-purple">
+        <span class="chip-icon">🕐</span>
+        <span class="chip-label">Horario secretaría</span>
+        <span class="chip-val">Lun–Vie 09:00–12:00 y 14:00–19:00 · Sáb 09:00–12:00</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/pediatria-infectologia/dra-fabiola-martinez#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/w9qc9k" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="infectologia" data-search="Robert Cuella infectólogo pediatra">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">RC</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dr. Robert Cuella</div>
+          <span class="doctor-card-spec">Infectología Pediátrica</span>
+          <div class="doctor-card-time">🕐 Lun–Vie 15:30–18:45 · Sáb 08:00–11:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">2.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">220.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Doctors, MediLife, OAMI, Samaja, Santa Clara, SPS</span>
+      </div>
+      <div class="info-chip chip-red">
+        <span class="chip-icon">📞</span>
+        <span class="chip-label">Teléfono / WhatsApp</span>
+        <span class="chip-val">0984 251799</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="http://ipncm.com/drrobertc-agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/ojccwn" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== CARDIOLOGÍA ===== -->
+    <div class="doctor-full-card" data-tags="cardiologia" data-search="Carlos Miguel Verón cardiólogo ecocardiograma">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">CV</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dr. Carlos Miguel Verón</div>
+          <span class="doctor-card-spec">Cardiología</span>
+          <div class="doctor-card-time">🕐 Mié 18:30–20:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, lado derecho</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">250.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">ℹ️</span>
+        <span class="chip-label">Estudios</span>
+        <span class="chip-val">Ecocardiograma Doppler 400.000 Gs · ECG 200.000 Gs · Eval. precompetitiva</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Asismed, Fleming, MediLife, OAMI</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://ipncm.com/drcarlosv-agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/5pe8nv" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="cardiologia" data-search="Soledad Álvarez cardióloga ecocardiograma">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">SA</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Soledad Álvarez</div>
+          <span class="doctor-card-spec">Cardiología</span>
+          <div class="doctor-card-time">🕐 Mié 15:30–18:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">2.º piso, lado derecho</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">300.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">ℹ️</span>
+        <span class="chip-label">Estudios</span>
+        <span class="chip-val">Ecocardiograma Doppler 500.000 Gs · ECG 200.000 Gs · Val. pre/posquirúrgicas</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Fleming, MediLife, Migone, OAMI, Reyva, SPS</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://ipncm.com/DraSoledadA-agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/2fqm0q" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== GASTROENTEROLOGÍA ===== -->
+    <div class="doctor-full-card" data-tags="gastro" data-search="Susana Pettit Alfieri gastroenteróloga nutricionista">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">SP</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Susana Pettit de Alfieri</div>
+          <span class="doctor-card-spec">Gastroenterología · Nutrición</span>
+          <div class="doctor-card-time">🕐 Lun y Mié 17:00–19:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">2.º piso, lado derecho</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">300.000 Gs (efectivo) <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Migone, OAMI, Santa Clara, SPS</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/gastroenterologia/dra-susana-pettit#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/aw6ma2" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="gastro" data-search="Lidia Garcete Mañotti gastroenteróloga nutrióloga">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">LG</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Lidia Garcete Mañotti</div>
+          <span class="doctor-card-spec">Gastroenterología · Nutriología</span>
+          <div class="doctor-card-time">🕐 Lun 16:00–17:40 · Mié y Vie 16:00–19:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, lado derecho</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">300.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">MediLife, ProSalud, Promed, Salud Protegida</span>
+      </div>
+      <div class="info-chip chip-purple">
+        <span class="chip-icon">🕐</span>
+        <span class="chip-label">Horario secretaría</span>
+        <span class="chip-val">Lun–Vie 15:00–19:00 · Sáb 09:00–12:00</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/gastroenterologia/dra-lidia-garcete#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/ccewdh" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== TRAUMATOLOGÍA ===== -->
+    <div class="doctor-full-card" data-tags="traumatologia" data-search="Ma. Eugenia Boselli traumatóloga ortopedista">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">MB</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Ma. Eugenia Boselli</div>
+          <span class="doctor-card-spec">Traumatología · Ortopedia</span>
+          <div class="doctor-card-time">🕐 Mar 09:30–12:00 · Mié 10:00–12:00 · Vie 15:00–17:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">2.º piso, lado derecho</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">200.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Asismed, Fleming, Intermed, MCI, Medital, MediLife, Migone, OAMI, Promed, Reyva, Samap, SEMI, SIME, SMF, San Lucas, Santa Clara, SPS</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://ipncm.com/dramaeugeniab-agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/2fqm0q" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="traumatologia" data-search="Laura Abigail Fernández traumatóloga ortopedista">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">LF</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Laura Abigail Fernández</div>
+          <span class="doctor-card-spec">Traumatología · Ortopedia</span>
+          <div class="doctor-card-time">🕐 Lun 09:00–11:00 · Jue 14:00–16:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">2.º piso, lado derecho</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">200.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Fleming, MediLife, OAMI, Reyva, Santa Clara, Semei, SPS</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://ipn.com.py/traumatologia/dra-abigail-fernandez-lesmo#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/2fqm0q" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== NEUROLOGÍA ===== -->
+    <div class="doctor-full-card" data-tags="neurologia" data-search="Ricardo Hidalgo neurólogo EEG">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">RH</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dr. Ricardo Hidalgo</div>
+          <span class="doctor-card-spec">Neurología</span>
+          <div class="doctor-card-time">🕐 Mié 16:00–19:30 · Sáb 09:00–11:30</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">6.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">250.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">ℹ️</span>
+        <span class="chip-label">Estudios</span>
+        <span class="chip-val">EEG Lun/Mié/Vie y Sáb 07:00–09:00 (400.000 Gs)</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">OAMI, SPS</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://ipncm.com/drricardoh-agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/6h4t0v" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="neurologia" data-search="Laura Mendoza neuróloga medicina sueño">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">LM</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Laura Mendoza</div>
+          <span class="doctor-card-spec">Neurología · Medicina del Sueño</span>
+          <div class="doctor-card-time">🕐 Mar 15:00–17:00 · Jue 15:00–18:30</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">6.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">250.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">MediLife, OAMI, SPS</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://ipncm.com/dralauram-agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/za1fc7" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== REUMATOLOGÍA ===== -->
+    <div class="doctor-full-card" data-tags="reumatologia" data-search="Cynthia Vega Valbuena reumatóloga infiltración articular">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">CV</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Cynthia Vega Valbuena</div>
+          <span class="doctor-card-spec">Reumatología Pediátrica</span>
+          <div class="doctor-card-time">🕐 Lun 16:00–19:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, lado derecho</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">250.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-blue full">
+        <span class="chip-icon">🔬</span>
+        <span class="chip-label">Procedimientos</span>
+        <span class="chip-val">Infiltración articular 350.000 Gs</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">MediLife, Migone, OAMI, Semei, SPS</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/reumatologia/dra-cynthia-vega#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/3m0731" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== OFTALMOLOGÍA ===== -->
+    <div class="doctor-full-card" data-tags="oftalmologia" data-search="Olivia Cardozo oftalmóloga estrabismo fondo de ojo">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">OC</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Olivia Cardozo</div>
+          <span class="doctor-card-spec">Oftalmología</span>
+          <div class="doctor-card-time">🕐 Lun 09:00–10:45 · Mié y Vie 09:00–12:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">250.000 Gs (sin dilatación)</span>
+      </div>
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">ℹ️</span>
+        <span class="chip-label">Estudios</span>
+        <span class="chip-val">Ortóptico 250.000 · Fondo de ojo 300.000 · Estrabismo 300.000 · Cicloplejía 250.000 Gs</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Fleming, Intermed, MediLife, OAMI, Promed, Reyva, Salud Protegida, San Lucas, Santa Clara, SPS</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/oftalmologia/dra-olivia-cardozo#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/jfi7nm" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== PSIQUIATRÍA ===== -->
+    <div class="doctor-full-card" data-tags="psiquiatria" data-search="Lourdes Ponce psiquiatra teleconsulta">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">LP</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Lourdes Ponce</div>
+          <span class="doctor-card-spec">Psiquiatría</span>
+          <div class="doctor-card-time">🕐 Mar 09:00–12:00 y 14:30–18:30</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">Presencial 350.000 Gs · Teleconsulta 300.000 Gs</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Particular</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/psiquiatria/dra-lourdes-ponce#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/is9rax" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== PSICOLOGÍA ===== -->
+    <div class="doctor-full-card" data-tags="psicologia" data-search="Álvaro Lo Bianco psicólogo clínico infantil">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">AL</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Lic. Álvaro Lo Bianco</div>
+          <span class="doctor-card-spec">Psicología Clínica Infantil</span>
+          <div class="doctor-card-time">🕐 Lun 17:00–20:00 · Mar 18:00–21:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">6.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">Presencial 220.000 Gs · Teleconsulta 200.000 Gs</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">SIME (Sanatorio Santa Bárbara)</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/psicologia-clinica-infantil/lic-alvaro-lo-bianco#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/l80eay" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== PSICOPEDAGOGÍA ===== -->
+    <div class="doctor-full-card" data-tags="psicopedagogia" data-search="Raquel López Iramain psicopedagoga">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">RL</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Lic. Raquel López de Iramain</div>
+          <span class="doctor-card-spec">Psicopedagogía</span>
+          <div class="doctor-card-time">🕐 Mar y Vie 15:00–17:30</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">6.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">220.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Particular</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/psicopedagogia/lic-raquel-lopez#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/4rmv06" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="psicopedagogia" data-search="Ana Esther Britez Ortega psicopedagoga TEA ADOS evaluación cognitiva">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">AB</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Lic. Ana Esther Britez Ortega</div>
+          <span class="doctor-card-spec">Psicopedagogía · TEA</span>
+          <div class="doctor-card-time">🕐 Sáb 09:00–12:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">2.º piso, lado derecho</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">250.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">ℹ️</span>
+        <span class="chip-label">Estudios</span>
+        <span class="chip-val">Eval. cognitiva · TEA (ADOS-2, ADI-R, CARS-2) · Battelle · Estimulación temprana</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Particular</span>
+      </div>
+      <div class="info-chip chip-red">
+        <span class="chip-icon">📞</span>
+        <span class="chip-label">Teléfono / WhatsApp</span>
+        <span class="chip-val">021 211 203 (int. 295) · 0982 215688</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/psicopedagogia/lic-ana-esther-britez-ortega---psicopedagoga#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.me/595982215688" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== NUTRICIÓN ===== -->
+    <div class="doctor-full-card" data-tags="nutricion" data-search="Laura Bareiro nutricionista">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">LB</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Lic. Laura Bareiro</div>
+          <span class="doctor-card-spec">Nutrición</span>
+          <div class="doctor-card-time">🕐 Jue 15:00–18:00 · Sáb 09:00–12:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">150.000 Gs presencial y teleconsulta</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">MediLife, OAMI, SPS</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/nutricion/lic-laura-bareiro#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/iazogk" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="nutricion" data-search="Natalia Olmedo nutricionista">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">NO</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Lic. Natalia Olmedo</div>
+          <span class="doctor-card-spec">Nutrición</span>
+          <div class="doctor-card-time">🕐 Lun 15:00–18:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">2.º piso, lado derecho</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">200.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Particular</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/nutricion/lic-natalia-olmedo-nutricionista#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/8pccfm" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== ORL ===== -->
+    <div class="doctor-full-card" data-tags="orl" data-search="Andrés Medina do Carmo otorrinolaringólogo cirujano cabeza cuello">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">AM</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dr. Andrés Medina do Carmo</div>
+          <span class="doctor-card-spec">ORL · Cirugía Cabeza y Cuello</span>
+          <div class="doctor-card-time">🕐 Mié 15:00–18:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, lado derecho</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">200.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-blue full">
+        <span class="chip-icon">🔬</span>
+        <span class="chip-label">Procedimientos</span>
+        <span class="chip-val">Lavado oído 150.000 · Cauterización nasal 180.000 · Extracción CE 250.000–300.000 Gs</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Asismed, Docto Salud, Fleming, MediLife, Mi Doctor, Migone, OAMI, Salud Protegida, Santa Clara, SEMEI, SPS</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/otorrinologia/dr-andres-medina#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/vbqdkl" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="orl" data-search="Frank Smith Antonioli otorrinolaringólogo estroboscopía">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">FS</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dr. Frank Smith Antonioli</div>
+          <span class="doctor-card-spec">Otorrinolaringología</span>
+          <div class="doctor-card-time">🕐 Lun 15:00–17:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">200.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-blue full">
+        <span class="chip-icon">🔬</span>
+        <span class="chip-label">Procedimientos</span>
+        <span class="chip-val">Lavado oído 150.000 · Nasofibrolaringoscopía 550.000 · Estroboscopía 850.000 Gs</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Intermed, OAMI, Premedic, Promed, SPS</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/otorrinologia/dr-frank-smith-anotnioli#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/gg1k44" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="orl" data-search="Humberto Lugo Pla otorrinolaringólogo frenillo lingual">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">HL</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dr. Humberto Lugo Pla</div>
+          <span class="doctor-card-spec">Otorrinolaringología</span>
+          <div class="doctor-card-time">🕐 Lun 15:00–17:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">180.000 Gs · Teleconsulta 120.000 Gs</span>
+      </div>
+      <div class="info-chip chip-blue full">
+        <span class="chip-icon">🔬</span>
+        <span class="chip-label">Procedimientos</span>
+        <span class="chip-val">Lavado oído 80.000 · Cauterización nasal 150.000 · Resección frenillo lingual 500.000 Gs</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Particular</span>
+      </div>
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">ℹ️</span>
+        <span class="chip-label">Contacto</span>
+        <span class="chip-val">0984 391 156</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/otorrinologia/dr-humberto-lugo#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/kqlcus" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== NEFROLOGÍA ===== -->
+    <div class="doctor-full-card" data-tags="nefrologia" data-search="Diana Báez Ladoux nefrologa infantil teleconsulta">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">DB</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Diana Báez de Ladoux</div>
+          <span class="doctor-card-spec">Nefrología Infantil</span>
+          <div class="doctor-card-time">🕐 Mar 15:00–17:00 · Sáb 09:00–12:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, lado derecho</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">275.000 Gs presencial · 220.000 Gs teleconsulta</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Justicia Medical, LIVI, MediLife, Migone, OAMI, Salud Protegida, Santa Clara (total), SPS (total)</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/nefrologia/dra-diana-baez-ladoux#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/tnmk82" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== HEMATO-ONCOLOGÍA ===== -->
+    <div class="doctor-full-card" data-tags="hemato" data-search="Angélica Samudio hematóloga oncóloga">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">AS</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Angélica Samudio</div>
+          <span class="doctor-card-spec">Hemato-Oncología</span>
+          <div class="doctor-card-time">🕐 Lun y Mié 16:00–18:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">6.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">385.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Asismed, MediLife, Medital, Migone, OAMI, Santa Clara, SPS</span>
+      </div>
+      <div class="info-chip chip-purple">
+        <span class="chip-icon">🕐</span>
+        <span class="chip-label">Horario secretaría</span>
+        <span class="chip-val">Lun–Vie 09:00–12:00 y 15:00–20:00 · Sáb 09:00–12:00</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/hematooncologia/dra-angelica-samudio#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/4xlibo" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== DERMATOLOGÍA ===== -->
+    <div class="doctor-full-card" data-tags="dermatologia" data-search="Olga Gutiérrez dermatóloga verrugas biopsias moluscos">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">OG</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Olga Gutiérrez</div>
+          <span class="doctor-card-spec">Dermatología</span>
+          <div class="doctor-card-time">🕐 Mié 16:00–19:30 · Sáb 09:00–11:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">6.º piso</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">280.000 Gs (presencial y teleconsulta)</span>
+      </div>
+      <div class="info-chip chip-blue full">
+        <span class="chip-icon">🔬</span>
+        <span class="chip-label">Procedimientos</span>
+        <span class="chip-val">Tratamiento de verrugas · Biopsias · Curetaje de moluscos</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Asismed, OAMI, Santa Clara</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/dermatologia/dra-olga-gutierrez#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/rjk6g5" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== GINECOLOGÍA ===== -->
+    <div class="doctor-full-card" data-tags="ginecologia" data-search="Fanny Corrales ginecóloga HPV implante subdérmico">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">FC</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Fanny Corrales</div>
+          <span class="doctor-card-spec">Ginecología</span>
+          <div class="doctor-card-time">🕐 Vie 15:30–18:30</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, lado izquierdo</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">250.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-blue full">
+        <span class="chip-icon">🔬</span>
+        <span class="chip-label">Procedimientos</span>
+        <span class="chip-val">Tópicos · Vacuna HPV · Implante subdérmico</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Particular</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/ginecologia/dra-fanny-corrales#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/5y2vy1" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== FONOAUDIOLOGÍA ===== -->
+    <div class="doctor-full-card" data-tags="fonoaudiologia" data-search="Magalí Rolón fonoaudióloga audiometría lenguaje otoemisiones">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">MR</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Lic. Magalí Rolón</div>
+          <span class="doctor-card-spec">Fonoaudiología</span>
+          <div class="doctor-card-time">🕐 Jue 14:30–19:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, ala izquierda</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">150.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-blue full">
+        <span class="chip-icon">🔬</span>
+        <span class="chip-label">Procedimientos</span>
+        <span class="chip-val">Otoemisiones RN 300.000 · Audiometría 130.000 · Timpanometría 120.000 · Terapia lenguaje 100.000 Gs/sesión</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">SPS</span>
+      </div>
+      <div class="info-chip chip-red">
+        <span class="chip-icon">📞</span>
+        <span class="chip-label">Teléfono / WhatsApp</span>
+        <span class="chip-val">0983 877476</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/fonoaudiologia/lic-magali-rolon#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/8um3il" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== ODONTOLOGÍA ===== -->
+    <div class="doctor-full-card" data-tags="odontologia" data-search="Alfredo Carrillo Canela odontólogo infantil">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">ACC</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dr. Alfredo Carrillo Canela</div>
+          <span class="doctor-card-spec">Odontología Infantil</span>
+          <div class="doctor-card-time">🕐 Lun–Vie 15:00–17:00 · Mié 09:00–11:00 · Sáb 09:00–11:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">Edificio Saint Germain</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">250.000 Gs · Teleconsulta 200.000 Gs</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Particular</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://wa.link/kqlcus" class="action-btn action-btn-agenda" target="_blank">🌐 Consultar agenda</a>
+        <a href="https://wa.link/7kpb9d" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== CIRUGÍA ===== -->
+    <div class="doctor-full-card" data-tags="cirugia" data-search="Kiichiro Matsumura cirujano urólogo infantil frenillo">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">KM</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dr. Kiichiro Matsumura</div>
+          <span class="doctor-card-spec">Cirugía · Urología Infantil</span>
+          <div class="doctor-card-time">🕐 Mié y Jue 16:00–19:00 · Sáb 10:00–12:00</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, ala derecha</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">120.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-blue full">
+        <span class="chip-icon">🔬</span>
+        <span class="chip-label">Procedimientos</span>
+        <span class="chip-val">Corte de frenillo · Cirugía menor (urgencias)</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Asismed, Fleming, MediLife, Migone, OAMI, Promed, Reyva, Samap, Samaja, San Lucas, Santa Clara, Salud Protegida, SPS</span>
+      </div>
+      <div class="info-chip chip-red">
+        <span class="chip-icon">📞</span>
+        <span class="chip-label">Teléfono / WhatsApp</span>
+        <span class="chip-val">021 211 203</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/cirugia/dr-kiichiro-matsumura#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/37xup5" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <div class="doctor-full-card" data-tags="cirugia" data-search="Santiago Arias Cohl cirujano urólogo infantil pH-metrías urodinamia">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">SA</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dr. Santiago Arias Cohl</div>
+          <span class="doctor-card-spec">Cirugía · Urología Infantil</span>
+          <div class="doctor-card-time">🕐 Mar 16:00–18:30</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">3.º piso, ala derecha</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">150.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-blue full">
+        <span class="chip-icon">🔬</span>
+        <span class="chip-label">Procedimientos</span>
+        <span class="chip-val">pH-metrías · Impedanciometría · Manometría · Urodinamia · Clínica de continencia pediátrica</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">Asismed, MediLife, Migone, OAMI, Reyva, Samaja, Santa Clara, SPS</span>
+      </div>
+      <div class="info-chip chip-red">
+        <span class="chip-icon">📞</span>
+        <span class="chip-label">Teléfono / WhatsApp</span>
+        <span class="chip-val">021 211 203</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/cirugia/dr-santiago-arias-cohl#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.link/aisbh7" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+    <!-- ===== ALERGIA ===== -->
+    <div class="doctor-full-card" data-tags="alergia" data-search="Verónica Bazán Onieva alergista inmunóloga prick alérgenos">
+      <div class="doctor-card-header" onclick="toggleCard(this)">
+        <div class="doctor-avatar2">VB</div>
+        <div class="doctor-card-meta">
+          <div class="doctor-card-name">Dra. Verónica Bazán Onieva</div>
+          <span class="doctor-card-spec">Alergia e Inmunología</span>
+          <div class="doctor-card-time">🕐 Jue 15:30–18:30</div>
+        </div>
+        <div class="tap-hint"><span class="tap-dot"></span></div><span class="expand-icon" style="display:none">›</span>
+      </div>
+      <div class="doctor-card-body">
+    <div class="info-grid">
+      <div class="info-chip chip-blue">
+        <span class="chip-icon">📍</span>
+        <span class="chip-label">Ubicación</span>
+        <span class="chip-val">2.º piso, lado derecho</span>
+      </div>
+      <div class="info-chip chip-amber">
+        <span class="chip-icon">💰</span>
+        <span class="chip-label">Precio de consulta</span>
+        <span class="chip-val">250.000 Gs <span class="badge-costo">particular</span></span>
+      </div>
+      <div class="info-chip chip-blue full">
+        <span class="chip-icon">🔬</span>
+        <span class="chip-label">Procedimientos</span>
+        <span class="chip-val">Prick aeroalérgenos · Prick leche/huevo · Pruebas de parche · Alergia a fármacos · Medio de contraste</span>
+      </div>
+      <div class="info-chip chip-green full">
+        <span class="chip-icon">🤝</span>
+        <span class="chip-label">Seguros aceptados</span>
+        <span class="chip-val">MediLife, Migone, OAMI, Santa Clara, SPS</span>
+      </div>
+      <div class="info-chip chip-red">
+        <span class="chip-icon">📞</span>
+        <span class="chip-label">Teléfono / WhatsApp</span>
+        <span class="chip-val">021 211 203 (int. 295) · 0982 215688</span>
+      </div>
+    </div>
+    </div>
+      <div class="card-actions">
+        <a href="https://www.ipn.com.py/inmunologia/dra-veronica-bazan---alergista-inmunologa-pediatrica#agenda" class="action-btn action-btn-agenda" target="_blank">🌐 Reservar turno web</a>
+        <a href="https://wa.me/595982215688" class="action-btn action-btn-wa" target="_blank">💬 Contactar secretaría</a>
+      </div>
+    </div>
+
+  </div><!-- /doctorsList -->
+
+  <div class="no-results" id="noResults">
+    <div class="no-results-icon">🔍</div>
+    <strong>Sin resultados</strong><br>
+    Probá con otro nombre o especialidad
+  </div>
+
+  <script>
+    let activeTag = 'todos';
+
+    function toggleCard(header) {
+      const card = header.closest('.doctor-full-card');
+      card.classList.toggle('open');
+    }
+
+    function filterDoctors() {
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+      activeTag = 'todos';
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.chip')[0].classList.add('active');
+      applyFilters(q, 'todos');
+    }
+
+    function filterByTag(tag, el) {
+      activeTag = tag;
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('searchInput').value = '';
+      applyFilters('', tag);
+    }
+
+    function applyFilters(q, tag) {
+      const cards = document.querySelectorAll('.doctor-full-card');
+      let visible = 0;
+      cards.forEach(card => {
+        const tags = card.dataset.tags || '';
+        const search = (card.dataset.search || '') + ' ' + (card.querySelector('.doctor-card-name')?.textContent || '');
+        const tagMatch = tag === 'todos' || tags.includes(tag);
+        const searchMatch = !q || search.toLowerCase().includes(q);
+        if (tagMatch && searchMatch) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+          card.classList.remove('open');
+        }
+      });
+      document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+    }
+  </script>
+
+  <!-- SEGUROS -->
+  <div class="section-title"><span>🏥</span> Seguros médicos asociados a IPN</div>
+  <div class="seguros-grid">
+    <div class="seguro-pill"><span>🏥</span>ASISMED</div>
+    <div class="seguro-pill"><span>💊</span>OAMI</div>
+    <div class="seguro-pill"><span>❤️</span>REYVA</div>
+    <div class="seguro-pill"><span>💊</span>SANTA CLARA</div>
+    <div class="seguro-pill"><span>🏥</span>MIGONES</div>
+    <div class="seguro-pill"><span>🏥</span>COOMECIPAS (SPS)</div>
+    <div class="seguro-pill"><span>🏥</span>ITAL FLEMING</div>
+    <div class="seguro-pill"><span>😁</span>SALUD PROTEGIDA</div>
+    <div class="seguro-pill"><span>💊</span>SEMEI</div>
+    <div class="seguro-pill"><span>❤️</span>MEDILIFE (MEDIPLAN)</div>
+    <div class="seguro-pill"><span>🏥</span>SAMAJA</div>
+    <div class="seguro-pill"><span>💊</span>SAMAP</div>
+    <div class="seguro-pill"><span>👨‍⚕️</span>DOCTOR'S</div>
+    <div class="seguro-pill"><span>🏥</span>SIME</div>
+    <div class="seguro-pill"><span>❤️</span>PROMED</div>
+  </div>
+
+
+  <!-- CONTACTO -->
+  <div class="section-title"><span>📞</span> Contacto</div>
+  <div class="horarios-card">
+    <div class="horario-row">
+      <div class="horario-left">
+        <div class="horario-dot dot-blue"></div>
+        <div>
+          <div class="horario-service">Operadora</div>
+        </div>
+      </div>
+      <a href="tel:021211203" style="font-weight:700;color:var(--blue);">021 211 203</a>
+    </div>
+    <div class="horario-row">
+      <div class="horario-left">
+        <div class="horario-dot dot-green"></div>
+        <div>
+          <div class="horario-service">Turnos</div>
+        </div>
+      </div>
+      <a href="https://wa.link/kqlcus" target="_blank" style="font-weight:700;color:#2E7D32;">0984 433 533</a>
+    </div>
+    <div class="horario-row">
+      <div class="horario-left">
+        <div class="horario-dot" style="background:var(--yellow)"></div>
+        <div>
+          <div class="horario-service">Guía Médica</div>
+        </div>
+      </div>
+      <a href="https://www.ipn.com.py/guia-medica" target="_blank" style="font-weight:700;color:var(--blue);">www.ipn.com.py/guia-medica</a>
+    </div>
+  </div>
+
+  <!-- OTROS SERVICIOS -->
+  <div class="section-title"><span>🏥</span> Otros Servicios</div>
+
+  <!-- CIRUGÍA -->
+  <div class="horarios-card" style="margin-bottom:12px;">
+    <div class="horario-row" style="background:var(--blue-pale);">
+      <div class="horario-left">
+        <span style="font-size:20px;">🔬</span>
+        <div class="horario-service" style="color:var(--blue);font-family:'Nunito',sans-serif;font-weight:800;">Cirugía</div>
+      </div>
+    </div>
+    <div class="horario-row">
+      <div class="horario-left">
+        <div class="horario-dot dot-blue"></div>
+        <div>
+          <div class="horario-service">Lunes a Viernes</div>
+          <div class="horario-time">08:00 – 18:00 hs</div>
+        </div>
+      </div>
+    </div>
+    <div class="horario-row">
+      <div class="horario-left">
+        <div class="horario-dot dot-yellow" style="background:var(--yellow)"></div>
+        <div>
+          <div class="horario-service">Sábados</div>
+          <div class="horario-time">08:00 – 12:00 hs</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-actions">
+      <a href="https://wa.me/595986860515" target="_blank" class="action-btn action-btn-wa">💬 WhatsApp Cirugía</a>
+      <a href="https://centrodeatencionipn-ui.github.io/solicituddecirugiaipn/" target="_blank" class="action-btn action-btn-agenda">📋 Solicitar Presupuesto</a>
+    </div>
+  </div>
+
+  <!-- LABORATORIO -->
+  <div class="horarios-card" style="margin-bottom:12px;">
+    <div class="horario-row" style="background:#E8F5E9;">
+      <div class="horario-left">
+        <span style="font-size:20px;">🧪</span>
+        <div class="horario-service" style="color:#2E7D32;font-family:'Nunito',sans-serif;font-weight:800;">Laboratorio</div>
+      </div>
+      <span class="badge-24">24 HS</span>
+    </div>
+    <div class="card-actions">
+      <a href="https://wa.me/595981143933" target="_blank" class="action-btn action-btn-wa">💬 Contacto: 0981 143 933</a>
+    </div>
+  </div>
+
+  <!-- RADIOLOGÍA Y ECOGRAFÍA -->
+  <div class="horarios-card" style="margin-bottom:12px;">
+    <div class="horario-row" style="background:#E3F0FF;">
+      <div class="horario-left">
+        <span style="font-size:20px;">🩻</span>
+        <div class="horario-service" style="color:var(--blue);font-family:'Nunito',sans-serif;font-weight:800;">Radiología y Ecografía</div>
+      </div>
+    </div>
+    <div class="horario-row">
+      <div class="horario-left">
+        <div class="horario-dot dot-blue"></div>
+        <div>
+          <div class="horario-service">Contacto / Turnos Ecografía</div>
+          <div class="horario-time">AgendaQR — con orden médica</div>
+        </div>
+      </div>
+      <a href="https://wa.me/595985720837" target="_blank" style="font-weight:700;color:#2E7D32;">985 720 837</a>
+    </div>
+
+    <!-- FORMULARIO DE TURNO ECOGRAFÍA -->
+    <div style="padding:16px;border-top:1px solid var(--border);">
+      <div style="font-family:'Nunito',sans-serif;font-weight:800;color:var(--blue);font-size:14px;margin-bottom:12px;">📋 Solicitar turno de Ecografía</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <input type="text" id="eco_nombre" placeholder="Nombre del paciente *" style="padding:10px 14px;border-radius:12px;border:1.5px solid var(--border);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;">
+        <input type="text" id="eco_cedula" placeholder="Nº de cédula del paciente *" style="padding:10px 14px;border-radius:12px;border:1.5px solid var(--border);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;">
+        <input type="text" id="eco_padre_madre" placeholder="Nombre del padre o la madre *" style="padding:10px 14px;border-radius:12px;border:1.5px solid var(--border);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;">
+        <input type="tel" id="eco_celular" placeholder="Nº de celular / WhatsApp *" style="padding:10px 14px;border-radius:12px;border:1.5px solid var(--border);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;">
+        <select id="eco_seguro" style="padding:10px 14px;border-radius:12px;border:1.5px solid var(--border);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;background:white;color:var(--text);">
+          <option value="">¿Posee seguro médico o es particular? *</option>
+          <option value="Particular">Particular</option>
+          <option value="ASISMED">ASISMED</option>
+          <option value="OAMI">OAMI</option>
+          <option value="REYVA">REYVA</option>
+          <option value="SANTA CLARA">SANTA CLARA</option>
+          <option value="MIGONES">MIGONES</option>
+          <option value="PS MED">PS MED</option>
+          <option value="ITAL FLEMING">ITAL FLEMING</option>
+          <option value="SALUD PROTEGIDA (ODONTOMEDICA)">SALUD PROTEGIDA (ODONTOMEDICA)</option>
+          <option value="SEMEI">SEMEI</option>
+          <option value="MEDILIFE (MEDIPLAN)">MEDILIFE (MEDIPLAN)</option>
+          <option value="SAMAJA">SAMAJA</option>
+          <option value="SAMAP">SAMAP</option>
+          <option value="DOCTOR'S">DOCTOR'S</option>
+          <option value="SIME">SIME</option>
+          <option value="PROMED">PROMED</option>
+          <option value="Otro">Otro</option>
+        </select>
+        <input type="text" id="eco_estudio" placeholder="Estudio a realizarse *" style="padding:10px 14px;border-radius:12px;border:1.5px solid var(--border);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;">
+        <textarea id="eco_obs" placeholder="Observaciones (opcional)" rows="3" style="padding:10px 14px;border-radius:12px;border:1.5px solid var(--border);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;resize:none;"></textarea>
+        <button onclick="enviarEcografia()" style="background:var(--blue);color:white;border:none;border-radius:12px;padding:14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
+          💬 Enviar solicitud por WhatsApp
+        </button>
+        <div style="background:#FFF8E1;border:1.5px solid #FFE082;border-radius:12px;padding:12px 14px;font-size:13px;color:#5D4037;">
+          <strong>⚠️ Importante:</strong> Recordá adjuntar la <strong>orden de ecografía</strong> firmada por tu médico al momento de contactarnos.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UBICACION -->
+  <div class="section-title"><span>📍</span> Cómo llegar</div>
+  <div class="ubicacion-card">
+    <div class="map-placeholder">
+      <a href="https://maps.google.com/?q=Azara+1042+Asuncion+Paraguay" target="_blank">
+        <div style="font-size:36px;">🗺️</div>
+        <p>Ver en Google Maps →</p>
+      </a>
+    </div>
+    <div class="ubicacion-info">
+      <div class="ubicacion-row">
+        <span class="ubicacion-icon">📍</span>
+        <span>Azara 1042, Asunción, Paraguay</span>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>IPN — Instituto Privado del Niño y Adolescente</strong><br>
+  Más de 50 años cuidando el futuro de Paraguay 💙<br><br>
+  <span style="font-size:11px;">📲 Seguinos: @ipninstitutoprivado</span>
+</div>
+
+<script>
+  const SHEETS_ENDPOINT = 'TU_URL_DE_APPS_SCRIPT_AQUI'; // reemplazar con la URL real del Web App
+
+  function enviarEcografia() {
+    const nombre = document.getElementById('eco_nombre').value.trim();
+    const cedula = document.getElementById('eco_cedula').value.trim();
+    const padreMadre = document.getElementById('eco_padre_madre').value.trim();
+    const celular = document.getElementById('eco_celular').value.trim();
+    const seguro = document.getElementById('eco_seguro').value;
+    const estudio = document.getElementById('eco_estudio').value.trim();
+    const obs = document.getElementById('eco_obs').value.trim();
+
+    if (!nombre || !cedula || !padreMadre || !celular || !seguro || !estudio) {
+      alert('Por favor completá todos los campos obligatorios (*).');
+      return;
+    }
+
+    const msg = `🩻 *Solicitud de Turno - Ecografía IPN*\n\n` +
+      `👤 *Paciente:* ${nombre}\n` +
+      `🪪 *Cédula:* ${cedula}\n` +
+      `👨‍👩‍👧 *Padre/Madre:* ${padreMadre}\n` +
+      `📱 *Celular/WA:* ${celular}\n` +
+      `🏥 *Seguro/Particular:* ${seguro}\n` +
+      `🔬 *Estudio:* ${estudio}\n` +
+      (obs ? `📝 *Observaciones:* ${obs}\n` : '') +
+      `\n_⚠️ Se adjuntará orden médica._`;
+
+    const url = `https://wa.me/595985720837?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+
+    // Guardar en Google Sheets
+    if (SHEETS_ENDPOINT && SHEETS_ENDPOINT !== 'TU_URL_DE_APPS_SCRIPT_AQUI') {
+      const data = { nombre, cedula, padreMadre, celular, seguro, estudio, obs };
+      fetch(SHEETS_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).catch(err => console.log('Sheets error:', err));
+    }
+  }
+</script>
+</body>
+</html>
